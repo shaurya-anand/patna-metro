@@ -1,0 +1,19 @@
+{
+  "name": "Patna Metro — Route Planner & Schedule",
+  "short_name": "Patna Metro",
+  "description": "Plan your Patna Metro journey. Fares, timings, map and live station status — free and fast.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8fafc",
+  "theme_color": "#1a56db",
+  "categories": ["travel", "navigation", "utilities"],
+  "lang": "en-IN",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "screenshots": [],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

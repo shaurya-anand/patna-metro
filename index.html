@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO -->
+    <title>Patna Metro — Route Planner, Fare & Schedule</title>
+    <meta name="description" content="Plan your Patna Metro journey instantly. Check fares, train timings, live station status, and the metro map for Red Line and Blue Line. Free, fast, no login." />
+    <meta name="keywords" content="Patna Metro, Patna Metro route planner, Patna Metro fare, Patna Metro schedule, Patna Metro map, PMRC, पटना मेट्रो, Patna Metro stations, Patna Metro Blue Line, Patna Metro Red Line" />
+    <meta name="author" content="patna-metro.com" />
+    <link rel="canonical" href="https://patna-metro.com/" />
+
+    <!-- Open Graph (WhatsApp, Facebook previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://patna-metro.com/" />
+    <meta property="og:title" content="Patna Metro — Route Planner, Fare & Schedule" />
+    <meta property="og:description" content="Plan your Patna Metro journey instantly. Fares, timings, map and live station status — free and fast." />
+    <meta property="og:image" content="https://patna-metro.com/og-image.png" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="Patna Metro" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Patna Metro — Route Planner, Fare & Schedule" />
+    <meta name="twitter:description" content="Plan your Patna Metro journey instantly. Fares, timings, map and live station status — free and fast." />
+    <meta name="twitter:image" content="https://patna-metro.com/og-image.png" />
+
+    <!-- PWA -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1a56db" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Patna Metro" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Patna Metro",
+      "alternateName": "पटना मेट्रो",
+      "url": "https://patna-metro.com",
+      "description": "Route planner, fare calculator, live station status, metro map and schedule for Patna Metro (PMRC). Covers Red Line (Corridor 1) and Blue Line (Corridor 2).",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Patna",
+        "sameAs": "https://www.wikidata.org/wiki/Q200716"
+      },
+      "featureList": [
+        "Route planner",
+        "Fare calculator",
+        "Train schedule",
+        "Metro map",
+        "Hindi and English language support"
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the fare for Patna Metro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Patna Metro fares start at ₹15 for short distances. Smart card holders get a 10% discount. Use the fare calculator at patna-metro.com for exact fares."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What time does Patna Metro start and end?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Patna Metro runs from 6:00 AM to 10:00 PM on weekdays, and 6:30 AM to 9:30 PM on weekends and holidays."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which Patna Metro stations are open?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Currently 3 stations are operational on the Blue Line: Bhootnath, Zero Mile, and New ISBT. The Red Line and remaining Blue Line stations are under construction."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many lines does Patna Metro have?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Patna Metro has 2 lines — Red Line (Corridor 1, 14 stations from Danapur Cantonment to Khemnichak) and Blue Line (Corridor 2, 12 stations from Patna Junction to New ISBT)."
+          }
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
