@@ -138,12 +138,16 @@ export default function Schedule() {
                     {lang === 'hi' ? LINES[lineId]?.nameHi : LINES[lineId]?.name}
                   </span>
                 </div>
-                <div className="px-4 py-3 flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: LINES[lineId]?.color }} />
-                  <span className="text-sm font-semibold text-slate-700">{sName(start)}</span>
-                  <span className="text-slate-300 mx-1">↔</span>
-                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: LINES[lineId]?.color }} />
-                  <span className="text-sm font-semibold text-slate-700">{sName(end)}</span>
+                <div className="px-4 py-3 grid grid-cols-[1fr_auto_1fr] items-center gap-x-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: LINES[lineId]?.color }} />
+                    <span className="text-sm font-semibold text-slate-700">{sName(start)}</span>
+                  </div>
+                  <span className="text-slate-300">↔</span>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: LINES[lineId]?.color }} />
+                    <span className="text-sm font-semibold text-slate-700">{sName(end)}</span>
+                  </div>
                 </div>
               </div>
             ))}
