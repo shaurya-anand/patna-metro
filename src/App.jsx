@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { LanguageProvider, useLang } from './context/LanguageContext'
 import Navbar from './components/Navbar'
@@ -30,6 +30,25 @@ function Header() {
   )
 }
 
+// Blue pages have a blue hero at the top; all others are slate-50
+const BLUE_PAGES = new Set(['/', '/schedule'])
+
+function PageMain() {
+  const { pathname } = useLocation()
+  const bg = BLUE_PAGES.has(pathname) ? 'bg-metro-blue' : 'bg-slate-50'
+  return (
+    <main className={`flex-1 overflow-y-auto flex flex-col min-h-0 ${bg}`}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/planner" element={<Planner />} />
+        <Route path="/map" element={<MetroMap />} />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/stations" element={<Stations />} />
+      </Routes>
+    </main>
+  )
+}
+
 export default function App() {
   return (
     <HelmetProvider>
@@ -38,16 +57,8 @@ export default function App() {
       <div className="flex flex-col h-dvh bg-slate-50 max-w-md mx-auto relative overflow-hidden shadow-2xl">
         <Header />
 
-        {/* Scrollable page content */}
-        <main className="flex-1 overflow-y-auto flex flex-col min-h-0 bg-metro-blue">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/planner" element={<Planner />} />
-            <Route path="/map" element={<MetroMap />} />
-            <Route path="/schedule" element={<Schedule />} />
-            <Route path="/stations" element={<Stations />} />
-          </Routes>
-        </main>
+        {/* Scrollable page content — bg matches current page top so iOS overscroll never flashes */}
+        <PageMain />
 
         {/* Bottom tab bar */}
         <Navbar />

@@ -230,7 +230,7 @@ export default function MetroMap() {
       <link rel="alternate" hreflang="x-default" href="https://patna-metro.com/map" />
     </Helmet>
 
-    <div className="min-h-full bg-slate-50 px-4 pt-5 pb-6 space-y-4">
+    <div className="px-4 pt-5 pb-6 space-y-4">
 
       {/* Page header */}
       <div>
