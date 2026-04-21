@@ -29,7 +29,7 @@ export default function App() {
     <HelmetProvider>
     <LanguageProvider>
     <BrowserRouter>
-      <div className="flex flex-col h-screen bg-slate-50 max-w-md mx-auto relative overflow-hidden shadow-2xl">
+      <div className="flex flex-col h-dvh bg-slate-50 max-w-md mx-auto relative overflow-hidden shadow-2xl">
         <Header />
 
         {/* Scrollable page content */}
