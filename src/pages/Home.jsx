@@ -63,6 +63,9 @@ export default function Home() {
       <title>Patna Metro — Route Planner, Fare & Schedule</title>
       <meta name="description" content="Plan your Patna Metro journey instantly. Check fares, train timings, live station status and metro map. Free Patna Metro app — no login needed." />
       <link rel="canonical" href="https://patna-metro.com/" />
+      <link rel="alternate" hreflang="en-IN" href="https://patna-metro.com/" />
+      <link rel="alternate" hreflang="hi" href="https://patna-metro.com/" />
+      <link rel="alternate" hreflang="x-default" href="https://patna-metro.com/" />
     </Helmet>
     <div className="min-h-full bg-metro-blue flex flex-col px-5 py-6">
 

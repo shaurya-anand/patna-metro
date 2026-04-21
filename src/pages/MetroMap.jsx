@@ -90,6 +90,9 @@ export default function MetroMap() {
       <title>Patna Metro Map — Red Line & Blue Line Stations</title>
       <meta name="description" content="Interactive Patna Metro map showing all stations on Red Line (Corridor 1) and Blue Line (Corridor 2). See interchanges, operational stations and the full network." />
       <link rel="canonical" href="https://patna-metro.com/map" />
+      <link rel="alternate" hreflang="en-IN" href="https://patna-metro.com/map" />
+      <link rel="alternate" hreflang="hi" href="https://patna-metro.com/map" />
+      <link rel="alternate" hreflang="x-default" href="https://patna-metro.com/map" />
     </Helmet>
     <div className="px-4 py-5">
       <h1 className="text-lg font-bold text-slate-800 mb-1">{t.title}</h1>

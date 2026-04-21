@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { HelmetProvider } from 'react-helmet-async'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { LanguageProvider, useLang } from './context/LanguageContext'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -11,16 +11,22 @@ import Stations from './pages/Stations'
 function Header() {
   const { lang, toggle } = useLang()
   return (
-    <header className="bg-metro-blue text-white px-4 py-3 flex items-center gap-2 flex-shrink-0">
-      <span className="text-xl">🚇</span>
-      <span className="font-bold text-base tracking-tight flex-1">Patna Metro</span>
-      <button
-        onClick={toggle}
-        className="text-xs font-semibold bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full transition-colors"
-      >
-        {lang === 'en' ? 'हिंदी' : 'English'}
-      </button>
-    </header>
+    <>
+      {/* Dynamically set <html lang> and global hreflang alternates */}
+      <Helmet>
+        <html lang={lang === 'hi' ? 'hi' : 'en-IN'} />
+      </Helmet>
+      <header className="bg-metro-blue text-white px-4 py-3 flex items-center gap-2 flex-shrink-0">
+        <span className="text-xl">🚇</span>
+        <span className="font-bold text-base tracking-tight flex-1">Patna Metro</span>
+        <button
+          onClick={toggle}
+          className="text-xs font-semibold bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full transition-colors"
+        >
+          {lang === 'en' ? 'हिंदी' : 'English'}
+        </button>
+      </header>
+    </>
   )
 }
 

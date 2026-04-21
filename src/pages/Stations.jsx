@@ -39,6 +39,9 @@ export default function Stations() {
       <title>Patna Metro Stations — All 26 Stations List, Facilities & Timings</title>
       <meta name="description" content="Complete list of all Patna Metro stations on Red Line and Blue Line. Check station facilities, first and last train timings, interchange stations and operational status." />
       <link rel="canonical" href="https://patna-metro.com/stations" />
+      <link rel="alternate" hreflang="en-IN" href="https://patna-metro.com/stations" />
+      <link rel="alternate" hreflang="hi" href="https://patna-metro.com/stations" />
+      <link rel="alternate" hreflang="x-default" href="https://patna-metro.com/stations" />
     </Helmet>
     <div className="px-4 py-5 space-y-3">
       <h1 className="text-lg font-bold text-slate-800">{t.title}</h1>
