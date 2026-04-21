@@ -58,7 +58,7 @@ export default function Schedule() {
       <link rel="alternate" hreflang="hi" href="https://patna-metro.com/schedule" />
       <link rel="alternate" hreflang="x-default" href="https://patna-metro.com/schedule" />
     </Helmet>
-    <div className="space-y-0 bg-metro-blue">
+    <div className="min-h-full space-y-0 bg-metro-blue">
 
       {/* Blue hero header */}
       <div className="bg-metro-blue px-4 pt-5 pb-12">

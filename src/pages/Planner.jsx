@@ -72,7 +72,7 @@ export default function Planner() {
   function swap() { setFrom(to); setTo(from); setResult(null) }
 
   return (
-    <div className="px-4 py-5 space-y-4">
+    <div className="min-h-full bg-slate-50 px-4 py-5 space-y-4">
       <h1 className="text-lg font-bold text-slate-800">{t.title}</h1>
 
       <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 space-y-3">

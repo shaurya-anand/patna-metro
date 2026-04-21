@@ -43,7 +43,7 @@ export default function Stations() {
       <link rel="alternate" hreflang="hi" href="https://patna-metro.com/stations" />
       <link rel="alternate" hreflang="x-default" href="https://patna-metro.com/stations" />
     </Helmet>
-    <div className="px-4 py-5 space-y-3">
+    <div className="min-h-full bg-slate-50 px-4 py-5 space-y-3">
       <h1 className="text-lg font-bold text-slate-800">{t.title}</h1>
 
       <div className="flex gap-2">
