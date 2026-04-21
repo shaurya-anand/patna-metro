@@ -48,34 +48,60 @@ function trunc(name, n) {
 }
 
 const MIN_SCALE = 1
-const MAX_SCALE = 4
+const MAX_SCALE = 5
 
 function clamp(val, min, max) { return Math.min(Math.max(val, min), max) }
+
+// Zoom by adjusting viewBox — SVG re-renders as crisp vectors at every level
+const INITIAL_VIEW = { x: 0, y: 0, w: SVG_W, h: SVG_H }
 
 export default function MetroMap() {
   const { lang } = useLang()
   const [selected, setSelected] = useState(null)
-  const [tf, setTf] = useState({ x: 0, y: 0, scale: 1 })
+  const [view, setView] = useState(INITIAL_VIEW)
 
   const containerRef = useRef(null)
-  // Use refs so event handlers always have fresh values without re-attaching
-  const tfRef   = useRef(tf)
-  const touch   = useRef({ lastDist: null, lastPos: null })
+  const viewRef = useRef(INITIAL_VIEW)   // always-fresh copy for event handlers
+  const touch   = useRef({ lastDist: null, lastPos: null, lastMid: null })
   const drag    = useRef({ active: false, lastPos: null })
 
-  useEffect(() => { tfRef.current = tf }, [tf])
-
   const dist = (t1, t2) => Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY)
+  const mid  = (t1, t2) => ({ x: (t1.clientX + t2.clientX) / 2, y: (t1.clientY + t2.clientY) / 2 })
 
   const update = useCallback((updater) => {
-    setTf(prev => {
+    setView(prev => {
       const next = updater(prev)
-      tfRef.current = next
+      viewRef.current = next
       return next
     })
   }, [])
 
-  const reset = () => setTf({ x: 0, y: 0, scale: 1 })
+  const reset = useCallback(() => {
+    setView(INITIAL_VIEW)
+    viewRef.current = INITIAL_VIEW
+  }, [])
+
+  // Convert element-space point (px from top-left of el) → SVG coordinate
+  const elToSvg = (ex, ey, v, rect) => ({
+    sx: v.x + ex * (v.w / rect.width),
+    sy: v.y + ey * (v.h / rect.height),
+  })
+
+  // Zoom toward a specific SVG point
+  const zoomToward = useCallback((svgX, svgY, elX, elY, rect, factor) => {
+    update(v => {
+      const curScale = SVG_W / v.w
+      const newScale = clamp(curScale * factor, MIN_SCALE, MAX_SCALE)
+      const newW = SVG_W / newScale
+      const newH = SVG_H / newScale
+      // Keep the SVG point (svgX, svgY) under screen point (elX, elY)
+      let nx = svgX - elX * (newW / rect.width)
+      let ny = svgY - elY * (newH / rect.height)
+      nx = clamp(nx, 0, SVG_W - newW)
+      ny = clamp(ny, 0, SVG_H - newH)
+      return { x: nx, y: ny, w: newW, h: newH }
+    })
+  }, [update])
 
   // Native touch/wheel listeners (passive:false needed for preventDefault)
   useEffect(() => {
@@ -85,26 +111,42 @@ export default function MetroMap() {
     function onTouchStart(e) {
       if (e.touches.length === 2) {
         touch.current.lastDist = dist(e.touches[0], e.touches[1])
+        touch.current.lastMid  = mid(e.touches[0], e.touches[1])
         touch.current.lastPos  = null
       } else if (e.touches.length === 1) {
         touch.current.lastPos  = { x: e.touches[0].clientX, y: e.touches[0].clientY }
         touch.current.lastDist = null
+        touch.current.lastMid  = null
       }
     }
 
     function onTouchMove(e) {
       e.preventDefault()
+      const rect = el.getBoundingClientRect()
+
       if (e.touches.length === 2) {
         const d = dist(e.touches[0], e.touches[1])
-        if (touch.current.lastDist) {
-          const ratio = d / touch.current.lastDist
-          update(p => ({ ...p, scale: clamp(p.scale * ratio, MIN_SCALE, MAX_SCALE) }))
+        const m = mid(e.touches[0], e.touches[1])
+
+        if (touch.current.lastDist && touch.current.lastMid) {
+          const factor = d / touch.current.lastDist
+          const v = viewRef.current
+          const elX = touch.current.lastMid.x - rect.left
+          const elY = touch.current.lastMid.y - rect.top
+          const { sx, sy } = elToSvg(elX, elY, v, rect)
+          zoomToward(sx, sy, elX, elY, rect, factor)
         }
         touch.current.lastDist = d
+        touch.current.lastMid  = m
+
       } else if (e.touches.length === 1 && touch.current.lastPos) {
         const dx = e.touches[0].clientX - touch.current.lastPos.x
         const dy = e.touches[0].clientY - touch.current.lastPos.y
-        update(p => ({ ...p, x: p.x + dx, y: p.y + dy }))
+        update(v => ({
+          ...v,
+          x: clamp(v.x - dx * (v.w / rect.width),  0, SVG_W - v.w),
+          y: clamp(v.y - dy * (v.h / rect.height), 0, SVG_H - v.h),
+        }))
         touch.current.lastPos = { x: e.touches[0].clientX, y: e.touches[0].clientY }
       }
     }
@@ -113,15 +155,18 @@ export default function MetroMap() {
       if (e.touches.length < 2) touch.current.lastDist = null
       if (e.touches.length === 0) {
         touch.current.lastPos = null
-        // Snap back to min scale if slightly under
-        if (tfRef.current.scale <= MIN_SCALE + 0.05) reset()
+        if (viewRef.current.w > SVG_W * 0.97) reset()
       }
     }
 
     function onWheel(e) {
       e.preventDefault()
-      const factor = e.deltaY < 0 ? 1.12 : 0.9
-      update(p => ({ ...p, scale: clamp(p.scale * factor, MIN_SCALE, MAX_SCALE) }))
+      const rect = el.getBoundingClientRect()
+      const factor = e.deltaY < 0 ? 1.15 : 0.87
+      const elX = e.clientX - rect.left
+      const elY = e.clientY - rect.top
+      const { sx, sy } = elToSvg(elX, elY, viewRef.current, rect)
+      zoomToward(sx, sy, elX, elY, rect, factor)
     }
 
     const opts = { passive: false }
@@ -135,15 +180,21 @@ export default function MetroMap() {
       el.removeEventListener('touchend',    onTouchEnd,   opts)
       el.removeEventListener('wheel',       onWheel,      opts)
     }
-  }, [update])
+  }, [update, reset, zoomToward])
 
   // Mouse drag (desktop)
   function onMouseDown(e) { drag.current = { active: true, lastPos: { x: e.clientX, y: e.clientY } } }
   function onMouseMove(e) {
     if (!drag.current.active) return
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect) return
     const dx = e.clientX - drag.current.lastPos.x
     const dy = e.clientY - drag.current.lastPos.y
-    update(p => ({ ...p, x: p.x + dx, y: p.y + dy }))
+    update(v => ({
+      ...v,
+      x: clamp(v.x - dx * (v.w / rect.width),  0, SVG_W - v.w),
+      y: clamp(v.y - dy * (v.h / rect.height), 0, SVG_H - v.h),
+    }))
     drag.current.lastPos = { x: e.clientX, y: e.clientY }
   }
   function onMouseUp() { drag.current.active = false }
@@ -166,7 +217,7 @@ export default function MetroMap() {
 
   const renderStations = STATIONS.filter(s => !(s.name === 'Patna Junction' && s.line === 'LINE2'))
 
-  const isZoomed = tf.scale > MIN_SCALE + 0.05
+  const isZoomed = view.w < SVG_W - 1
 
   return (
     <>
@@ -219,15 +270,8 @@ export default function MetroMap() {
             onMouseUp={onMouseUp}
             onMouseLeave={onMouseUp}
           >
-            <div
-              style={{
-                transform: `translate(${tf.x}px, ${tf.y}px) scale(${tf.scale})`,
-                transformOrigin: 'center center',
-                willChange: 'transform',
-              }}
-            >
               <svg
-                viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+                viewBox={`${view.x} ${view.y} ${view.w} ${view.h}`}
                 style={{ width: '100%', height: 'auto', display: 'block' }}
               >
                 {/* Khemnichak diagonal connector */}
@@ -310,7 +354,6 @@ export default function MetroMap() {
                   {lang === 'hi' ? LINES.LINE2.nameHi : LINES.LINE2.name}
                 </text>
               </svg>
-            </div>
 
             {/* Reset zoom button */}
             {isZoomed && (
