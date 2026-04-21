@@ -18,7 +18,7 @@ export default function StationSelect({ value, onChange, exclude, className = ''
   const sLabel = s => `${lang === 'hi' ? s.nameHi : s.name}${s.interchange ? ' ⇄' : ''}`
 
   return (
-    <select value={value} onChange={e => onChange(e.target.value)} className={className}>
+    <select value={value} onChange={e => onChange(e.target.value)} className={`appearance-none ${className}`}>
       <option value="">{ph}</option>
 
       {openNow.length > 0 && (
