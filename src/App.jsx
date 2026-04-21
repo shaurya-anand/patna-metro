@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import { LanguageProvider, useLang } from './context/LanguageContext'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -25,6 +26,7 @@ function Header() {
 
 export default function App() {
   return (
+    <HelmetProvider>
     <LanguageProvider>
     <BrowserRouter>
       <div className="flex flex-col h-screen bg-slate-50 max-w-md mx-auto relative overflow-hidden shadow-2xl">
@@ -46,5 +48,6 @@ export default function App() {
       </div>
     </BrowserRouter>
     </LanguageProvider>
+    </HelmetProvider>
   )
 }

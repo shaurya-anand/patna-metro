@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { STATIONS, LINES } from '../data/stations'
 import { useLang } from '../context/LanguageContext'
 
@@ -84,6 +85,12 @@ export default function MetroMap() {
   })
 
   return (
+    <>
+    <Helmet>
+      <title>Patna Metro Map — Red Line & Blue Line Stations</title>
+      <meta name="description" content="Interactive Patna Metro map showing all stations on Red Line (Corridor 1) and Blue Line (Corridor 2). See interchanges, operational stations and the full network." />
+      <link rel="canonical" href="https://patna-metro.com/map" />
+    </Helmet>
     <div className="px-4 py-5">
       <h1 className="text-lg font-bold text-slate-800 mb-1">{t.title}</h1>
       <p className="text-slate-500 text-xs mb-3">{t.tap}</p>
@@ -239,5 +246,6 @@ export default function MetroMap() {
         </div>
       )}
     </div>
+    </>
   )
 }

@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { SCHEDULE, STATIONS, LINES } from '../data/stations'
 import { fmt } from '../data/timeUtils'
 import { useLang } from '../context/LanguageContext'
@@ -48,6 +49,12 @@ export default function Schedule() {
     .join('   ·   ')
 
   return (
+    <>
+    <Helmet>
+      <title>Patna Metro Schedule — Train Timings & Frequency</title>
+      <meta name="description" content="Patna Metro train timings: first train 6:00 AM, last train 10:00 PM on weekdays. Check peak and off-peak frequency, weekend schedule and terminal stations." />
+      <link rel="canonical" href="https://patna-metro.com/schedule" />
+    </Helmet>
     <div className="space-y-0">
 
       {/* Blue hero header */}
@@ -142,5 +149,6 @@ export default function Schedule() {
 
       </div>
     </div>
+    </>
   )
 }

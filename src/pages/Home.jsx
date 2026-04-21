@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { STATIONS, LINES, FARE_SLABS } from '../data/stations'
 import { findRoute } from '../data/graph'
 import StationSelect from '../components/StationSelect'
@@ -57,6 +58,12 @@ export default function Home() {
   function swap() { setFrom(to); setTo(from); setResult(null) }
 
   return (
+    <>
+    <Helmet>
+      <title>Patna Metro — Route Planner, Fare & Schedule</title>
+      <meta name="description" content="Plan your Patna Metro journey instantly. Check fares, train timings, live station status and metro map. Free Patna Metro app — no login needed." />
+      <link rel="canonical" href="https://patna-metro.com/" />
+    </Helmet>
     <div className="min-h-full bg-metro-blue flex flex-col px-5 py-6">
 
       {/* Hero */}
@@ -188,5 +195,6 @@ export default function Home() {
       )}
       </div>
     </div>
+    </>
   )
 }

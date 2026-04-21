@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { STATIONS, LINES, STATION_FACILITIES } from '../data/stations'
 import { getStationTimes, getTerminals } from '../data/timeUtils'
 import { useLang } from '../context/LanguageContext'
@@ -33,6 +34,12 @@ export default function Stations() {
   })
 
   return (
+    <>
+    <Helmet>
+      <title>Patna Metro Stations — All 26 Stations List, Facilities & Timings</title>
+      <meta name="description" content="Complete list of all Patna Metro stations on Red Line and Blue Line. Check station facilities, first and last train timings, interchange stations and operational status." />
+      <link rel="canonical" href="https://patna-metro.com/stations" />
+    </Helmet>
     <div className="px-4 py-5 space-y-3">
       <h1 className="text-lg font-bold text-slate-800">{t.title}</h1>
 
@@ -140,5 +147,6 @@ export default function Stations() {
         )}
       </div>
     </div>
+    </>
   )
 }
