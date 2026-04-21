@@ -39,7 +39,7 @@ export default function App() {
         <Header />
 
         {/* Scrollable page content */}
-        <main className="flex-1 overflow-y-auto flex flex-col">
+        <main className="flex-1 overflow-y-auto flex flex-col min-h-0">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/planner" element={<Planner />} />
