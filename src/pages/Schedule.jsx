@@ -10,6 +10,7 @@ const T = {
     first: 'First Train', last: 'Last Train',
     freqTitle: 'Train Frequency',
     rushHours: 'Rush Hours', otherTimes: 'Other Times',
+    peakFreq: 'Every 3–5 min', offPeakFreq: 'Every 7–10 min',
     terminals: 'Terminals',
     disclaimer: 'Schedule is indicative. Check official PMRC notices for actual timings.',
     statusNote: 'Currently only Bhootnath → New ISBT (Blue Line) is operational. All other stations are under construction.',
@@ -20,6 +21,7 @@ const T = {
     first: 'पहली ट्रेन', last: 'आखिरी ट्रेन',
     freqTitle: 'ट्रेन आवृत्ति',
     rushHours: 'भीड़ के समय', otherTimes: 'अन्य समय',
+    peakFreq: 'हर 3–5 मिनट', offPeakFreq: 'हर 7–10 मिनट',
     terminals: 'टर्मिनल',
     disclaimer: 'समय सांकेतिक है। सटीक समय के लिए PMRC की आधिकारिक सूचना देखें।',
     statusNote: 'अभी केवल भूतनाथ → नया आईएसबीटी (ब्लू लाइन) चालू है। अन्य सभी स्टेशन निर्माणाधीन हैं।',
@@ -44,9 +46,10 @@ export default function Schedule() {
 
   const sName = s => lang === 'hi' ? s?.nameHi : s?.name
 
-  const peakSub = peakHours
-    .map(ph => { const [s, e] = ph.split('–'); return `${fmt(s)} – ${fmt(e)}` })
-    .join('   ·   ')
+  const peakLines = peakHours.map(ph => {
+    const [s, e] = ph.split('–')
+    return `${fmt(s)} – ${fmt(e)}`
+  })
 
   return (
     <>
@@ -111,13 +114,15 @@ export default function Schedule() {
             <div className="flex items-center justify-between bg-amber-50 rounded-2xl px-4 py-3">
               <div>
                 <div className="text-sm font-semibold text-amber-800">{t.rushHours}</div>
-                <div className="text-xs text-amber-600/70 mt-0.5">{peakSub}</div>
+                <div className="text-xs text-amber-600/70 mt-0.5">
+                  {peakLines.map((line, i) => <div key={i}>{line}</div>)}
+                </div>
               </div>
-              <span className="text-base font-extrabold text-amber-600 ml-3">{weekdays.peakFrequency}</span>
+              <span className="text-base font-extrabold text-amber-600 ml-3 flex-shrink-0">{t.peakFreq}</span>
             </div>
             <div className="flex items-center justify-between bg-slate-50 rounded-2xl px-4 py-3">
               <div className="text-sm font-semibold text-slate-700">{t.otherTimes}</div>
-              <span className="text-base font-extrabold text-metro-blue">{weekdays.offPeakFrequency}</span>
+              <span className="text-base font-extrabold text-metro-blue ml-3 flex-shrink-0">{t.offPeakFreq}</span>
             </div>
           </div>
         </div>
