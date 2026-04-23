@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { STATIONS, LINES, FARE_SLABS } from '../data/stations'
 import { findRoute } from '../data/graph'
 import { getJourneyTimes } from '../data/timeUtils'
@@ -8,11 +9,13 @@ import { useLang } from '../context/LanguageContext'
 const T = {
   en: { title: 'Route Planner', from: 'From', to: 'To', findRoute: 'Find Route',
         stops: 'Stops', estTime: 'Est. Time', token: 'Token', card: 'Smart Card',
+        min: 'min', hr: 'h', hrMin: 'm',
         trainTimings: 'Train Timings (Weekdays)', firstTrain: 'First Train', lastTrain: 'Last Train',
         arrives: 'arrives', route: 'Route', changeHere: 'Change here',
         errBoth: 'Please select both stations.', errSame: 'Origin and destination are the same.', errNone: 'No route found.' },
   hi: { title: 'रूट प्लानर', from: 'कहाँ से', to: 'कहाँ तक', findRoute: 'रास्ता खोजें',
         stops: 'स्टॉप', estTime: 'अनुमानित समय', token: 'टोकन', card: 'स्मार्ट कार्ड',
+        min: 'मिनट', hr: 'घंटा', hrMin: 'मिनट',
         trainTimings: 'ट्रेन समय (सोम–शुक्र)', firstTrain: 'पहली ट्रेन', lastTrain: 'आखिरी ट्रेन',
         arrives: 'पहुंचती है', route: 'रूट', changeHere: 'यहाँ बदलें',
         errBoth: 'कृपया दोनों स्टेशन चुनें।', errSame: 'प्रारंभ और गंतव्य एक ही हैं।', errNone: 'कोई रास्ता नहीं मिला।' },
@@ -23,10 +26,10 @@ function getFare(stationCount) {
   return slab || FARE_SLABS[FARE_SLABS.length - 1]
 }
 
-function estimateTime(stops, interchanges) {
+function estimateTime(stops, interchanges, t) {
   const mins = Math.round(stops * 2.5 + interchanges * 3)
-  if (mins < 60) return `${mins} min`
-  return `${Math.floor(mins / 60)}h ${mins % 60}m`
+  if (mins < 60) return `${mins} ${t.min}`
+  return `${Math.floor(mins / 60)}${t.hr} ${mins % 60}${t.hrMin}`
 }
 
 function StationSelect({ label, value, onChange, exclude }) {
@@ -64,7 +67,7 @@ export default function Planner() {
     const stationsInRoute = route.path.length
     const interchanges = route.segments.filter(s => s.interchange).length
     const fare = getFare(stationsInRoute - 1)
-    const time = estimateTime(stationsInRoute - 1, interchanges)
+    const time = estimateTime(stationsInRoute - 1, interchanges, t)
     const trains = getJourneyTimes(stationMap[from], stationsInRoute - 1)
     setResult({ route, stationsInRoute, interchanges, fare, time, trains })
   }
@@ -72,6 +75,15 @@ export default function Planner() {
   function swap() { setFrom(to); setTo(from); setResult(null) }
 
   return (
+    <>
+    <Helmet>
+      <title>Patna Metro Route Planner — Fare & Train Timings</title>
+      <meta name="description" content="Plan your Patna Metro journey. Get fare, estimated travel time and first/last train timings for any route on the Red Line or Blue Line." />
+      <link rel="canonical" href="https://patna-metro.com/planner" />
+      <link rel="alternate" hreflang="en-IN" href="https://patna-metro.com/planner" />
+      <link rel="alternate" hreflang="hi" href="https://patna-metro.com/planner" />
+      <link rel="alternate" hreflang="x-default" href="https://patna-metro.com/planner" />
+    </Helmet>
     <div className="px-4 py-5 space-y-4">
       <h1 className="text-lg font-bold text-slate-800">{t.title}</h1>
 
@@ -165,5 +177,6 @@ export default function Planner() {
         </div>
       )}
     </div>
+    </>
   )
 }

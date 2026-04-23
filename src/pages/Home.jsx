@@ -10,10 +10,12 @@ const T = {
   en: { whereTo: 'Where to?', from: 'From…', to: 'To…', findRoute: 'Find Route',
         stops: 'Stops', time: 'Time', token: 'Token', card: 'Card',
         route: 'Route', change: 'Change',
+        min: 'min', hr: 'h', hrMin: 'm',
         errBoth: 'Please select both stations.', errSame: 'Origin and destination are the same.', errNone: 'No route found.' },
   hi: { whereTo: 'कहाँ जाना है?', from: 'कहाँ से…', to: 'कहाँ तक…', findRoute: 'रास्ता खोजें',
         stops: 'स्टॉप', time: 'समय', token: 'टोकन', card: 'कार्ड',
         route: 'रूट', change: 'बदलें',
+        min: 'मिनट', hr: 'घंटा', hrMin: 'मिनट',
         errBoth: 'कृपया दोनों स्टेशन चुनें।', errSame: 'प्रारंभ और गंतव्य एक ही हैं।', errNone: 'कोई रास्ता नहीं मिला।' },
 }
 
@@ -22,10 +24,10 @@ function getFare(stationCount) {
   return slab || FARE_SLABS[FARE_SLABS.length - 1]
 }
 
-function estimateTime(stops, interchanges) {
+function estimateTime(stops, interchanges, t) {
   const mins = Math.round(stops * 2.5 + interchanges * 3)
-  if (mins < 60) return `${mins} min`
-  return `${Math.floor(mins / 60)}h ${mins % 60}m`
+  if (mins < 60) return `${mins} ${t.min}`
+  return `${Math.floor(mins / 60)}${t.hr} ${mins % 60}${t.hrMin}`
 }
 
 const selectCls = 'w-full px-4 py-3.5 text-sm text-slate-800 bg-white focus:outline-none'
@@ -51,7 +53,7 @@ export default function Home() {
     const stationsInRoute = route.path.length
     const interchanges = route.segments.filter(s => s.interchange).length
     const fare = getFare(stationsInRoute - 1)
-    const time = estimateTime(stationsInRoute - 1, interchanges)
+    const time = estimateTime(stationsInRoute - 1, interchanges, t)
     setResult({ route, stationsInRoute, interchanges, fare, time })
   }
 
