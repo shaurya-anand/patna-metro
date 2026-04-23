@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.patna.metro",
+    "sha256_cert_fingerprints": ["3C:0F:B8:45:93:CC:55:F7:4A:A7:0F:22:59:5D:BF:63:00:05:4A:BB:F3:50:E2:8D:D3:2C:CC:3A:94:E5:17:EA"]
+  }
+}]
