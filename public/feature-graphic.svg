@@ -17,21 +17,21 @@
   </g>
 
   <!-- App name -->
-  <text x="385" y="230" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="90" font-weight="900" fill="white">Patna Metro.</text>
+  <text x="415" y="230" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="90" font-weight="900" fill="white">Patna Metro</text>
 
-  <!-- Subtitle — smaller to prevent overflow -->
-  <text x="385" y="278" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="19" font-weight="400" fill="white" opacity="0.7">Route Planner · Fare Calculator · Metro Map · Train Schedule</text>
+  <!-- Subtitle -->
+  <text x="415" y="278" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="19" font-weight="400" fill="white" opacity="0.7">Route Planner · Fare Calculator · Metro Map · Train Schedule</text>
 
-  <!-- Badges: x=385 to x=930, 4×129px with 10px gaps -->
-  <rect x="385" y="318" width="129" height="38" rx="19" fill="white" opacity="0.15"/>
-  <text x="449" y="342" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Free</text>
+  <!-- Badges: aligned with title start x=415 -->
+  <rect x="415" y="318" width="129" height="38" rx="19" fill="white" opacity="0.15"/>
+  <text x="479" y="342" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Free</text>
 
-  <rect x="524" y="318" width="129" height="38" rx="19" fill="white" opacity="0.15"/>
-  <text x="588" y="342" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">No Login</text>
+  <rect x="554" y="318" width="129" height="38" rx="19" fill="white" opacity="0.15"/>
+  <text x="618" y="342" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">No Login</text>
 
-  <rect x="663" y="318" width="129" height="38" rx="19" fill="white" opacity="0.15"/>
-  <text x="727" y="342" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Hindi · English</text>
+  <rect x="693" y="318" width="129" height="38" rx="19" fill="white" opacity="0.15"/>
+  <text x="757" y="342" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Hindi · English</text>
 
-  <rect x="802" y="318" width="129" height="38" rx="19" fill="white" opacity="0.15"/>
-  <text x="866" y="342" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Works Offline</text>
+  <rect x="832" y="318" width="129" height="38" rx="19" fill="white" opacity="0.15"/>
+  <text x="896" y="342" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Works Offline</text>
 </svg>
