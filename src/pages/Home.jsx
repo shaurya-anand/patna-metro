@@ -73,7 +73,9 @@ export default function Home() {
 
       {/* Hero */}
       <div className="flex flex-col items-center text-center mb-7 pt-2">
-        <div className="w-16 h-16 rounded-full bg-black/30 flex items-center justify-center text-4xl mb-4">🚇</div>
+        <div className="w-16 h-16 flex items-center justify-center mb-4">
+          <img src="/metro-icon.svg" alt="Metro" className="w-full h-full" />
+        </div>
         <h2 className="text-3xl font-extrabold text-white mb-1.5">
           {lang === 'hi' ? 'अपनी यात्रा प्लान करें' : 'Plan your journey'}
         </h2>

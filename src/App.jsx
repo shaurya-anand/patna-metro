@@ -17,7 +17,7 @@ function Header() {
         <html lang={lang === 'hi' ? 'hi' : 'en-IN'} />
       </Helmet>
       <header className="bg-metro-blue text-white px-4 py-3 flex items-center gap-2 flex-shrink-0">
-        <span className="text-xl">🚇</span>
+        <img src="/metro-icon.svg" alt="Metro" className="w-6 h-6" />
         <span className="font-bold text-base tracking-tight flex-1">Patna Metro</span>
         <button
           onClick={toggle}

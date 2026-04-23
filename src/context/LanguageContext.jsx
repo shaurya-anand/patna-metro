@@ -19,7 +19,7 @@ export function LanguageProvider({ children }) {
     return (
       <div className="flex items-center justify-center h-screen bg-metro-blue">
         <div className="bg-white rounded-3xl mx-6 p-8 shadow-2xl text-center max-w-sm w-full">
-          <div className="text-5xl mb-5">🚇</div>
+          <div className="mb-5"><img src="/metro-icon.svg" alt="Metro" className="w-16 h-16 mx-auto" /></div>
           <h1 className="text-xl font-extrabold text-slate-800 mb-1">Patna Metro</h1>
           <p className="text-slate-400 text-sm mb-8">Choose your language · भाषा चुनें</p>
           <div className="space-y-3">
