@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: #0f3aad;
+  }
+
+  .card {
+    width: 1200px;
+    height: 630px;
+    position: relative;
+    background: linear-gradient(135deg, #1a56db 0%, #0f3aad 55%, #0a2a7a 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+    overflow: hidden;
+  }
+
+  /* Background decorative circles */
+  .circle1 {
+    position: absolute;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.06);
+    top: -120px; right: 160px;
+  }
+  .circle2 {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.04);
+    top: -200px; right: 60px;
+  }
+  .circle3 {
+    position: absolute;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+    bottom: -80px; left: 40px;
+  }
+
+  /* Left content */
+  .left {
+    flex: 1;
+    z-index: 2;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    padding: 6px 16px;
+    margin-bottom: 28px;
+  }
+  .badge-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+  }
+  .badge-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.03em;
+  }
+
+  .icon {
+    font-size: 56px;
+    line-height: 1;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  h1 {
+    font-size: 72px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  h1 span {
+    color: rgba(255,255,255,0.45);
+  }
+
+  .tagline {
+    font-size: 22px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 400;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+
+  .pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 7px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .url {
+    position: absolute;
+    bottom: 36px;
+    left: 80px;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.04em;
+  }
+
+  /* Right: Schematic map */
+  .right {
+    width: 340px;
+    height: 100%;
+    position: relative;
+    flex-shrink: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .map-svg {
+    width: 300px;
+    height: 340px;
+    opacity: 0.92;
+  }
+
+  /* Line legend bottom right */
+  .legend {
+    position: absolute;
+    bottom: 36px;
+    right: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .legend-line {
+    width: 28px;
+    height: 4px;
+    border-radius: 2px;
+  }
+  .legend-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.55);
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <!-- Decorative circles -->
+  <div class="circle1"></div>
+  <div class="circle2"></div>
+  <div class="circle3"></div>
+
+  <!-- Left content -->
+  <div class="left">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">3 Stations Open · Blue Line</span>
+    </div>
+
+    <span class="icon">🚇</span>
+
+    <h1>Patna Metro<span>.</span></h1>
+
+    <p class="tagline">Route Planner · Fare Calculator<br>Metro Map · Train Schedule</p>
+
+    <div class="pills">
+      <div class="pill">Free</div>
+      <div class="pill">No Login</div>
+      <div class="pill">Hindi · English</div>
+      <div class="pill">Works Offline</div>
+    </div>
+  </div>
+
+  <!-- Right: Metro map schematic -->
+  <div class="right">
+    <svg class="map-svg" viewBox="0 0 300 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- Red Line (horizontal) -->
+      <line x1="20" y1="80" x2="220" y2="80" stroke="#e02424" stroke-width="5" stroke-linecap="round"/>
+      <!-- Station dots Red -->
+      <circle cx="20"  cy="80" r="5" fill="white" stroke="#e02424" stroke-width="2.5"/>
+      <circle cx="55"  cy="80" r="5" fill="white" stroke="#e02424" stroke-width="2.5"/>
+      <circle cx="90"  cy="80" r="5" fill="white" stroke="#e02424" stroke-width="2.5"/>
+      <circle cx="125" cy="80" r="5" fill="white" stroke="#e02424" stroke-width="2.5"/>
+      <!-- Patna Jn interchange -->
+      <circle cx="155" cy="80" r="8" fill="white" stroke="#f59e0b" stroke-width="3"/>
+      <circle cx="155" cy="80" r="12" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <circle cx="185" cy="80" r="5" fill="white" stroke="#e02424" stroke-width="2.5"/>
+      <circle cx="220" cy="80" r="8" fill="white" stroke="#f59e0b" stroke-width="3"/>
+      <circle cx="220" cy="80" r="12" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+      <!-- Red Line label -->
+      <text x="20" y="62" font-size="10" fill="#e02424" font-weight="700" font-family="system-ui">RED LINE</text>
+
+      <!-- Blue Line vertical (Patna Jn → Khemnichak) -->
+      <line x1="155" y1="80" x2="155" y2="240" stroke="#1a56db" stroke-width="5" stroke-linecap="round" stroke-opacity="0.4" stroke-dasharray="8,5"/>
+      <!-- Blue Line vertical stations -->
+      <circle cx="155" cy="120" r="4" fill="white" stroke="#1a56db" stroke-width="2" opacity="0.6"/>
+      <circle cx="155" cy="155" r="4" fill="white" stroke="#1a56db" stroke-width="2" opacity="0.6"/>
+      <circle cx="155" cy="190" r="4" fill="white" stroke="#1a56db" stroke-width="2" opacity="0.6"/>
+      <circle cx="155" cy="240" r="7" fill="white" stroke="#f59e0b" stroke-width="3"/>
+
+      <!-- Blue Line horizontal (Khemnichak → New ISBT) operational -->
+      <line x1="155" y1="240" x2="20"  y2="240" stroke="#1a56db" stroke-width="5" stroke-linecap="round"/>
+      <!-- Blue horizontal stations — operational (green) -->
+      <circle cx="155" cy="240" r="4.5" fill="#10b981" stroke="white" stroke-width="2"/>
+      <circle cx="100" cy="240" r="4.5" fill="#10b981" stroke="white" stroke-width="2"/>
+      <circle cx="20"  cy="240" r="4.5" fill="#10b981" stroke="white" stroke-width="2"/>
+
+      <!-- Blue Line label -->
+      <text x="20" y="270" font-size="10" fill="#1a56db" font-weight="700" font-family="system-ui" fill-opacity="0.9">BLUE LINE</text>
+
+      <!-- Open label -->
+      <text x="20" y="286" font-size="9" fill="#10b981" font-weight="600" font-family="system-ui">● 3 stations operational</text>
+
+      <!-- Diagonal interchange connector -->
+      <line x1="220" y1="80" x2="155" y2="240" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.7"/>
+
+      <!-- Station name labels -->
+      <text x="130" y="75" font-size="7.5" fill="rgba(255,255,255,0.55)" font-family="system-ui" text-anchor="end">Patna Jn</text>
+      <text x="228" y="75" font-size="7.5" fill="rgba(255,255,255,0.55)" font-family="system-ui">Khemnichak</text>
+      <text x="10"  y="230" font-size="7.5" fill="rgba(255,255,255,0.8)" font-family="system-ui" text-anchor="middle">New ISBT</text>
+      <text x="100" y="230" font-size="7.5" fill="rgba(255,255,255,0.8)" font-family="system-ui" text-anchor="middle">Zero Mile</text>
+      <text x="155" y="230" font-size="7.5" fill="rgba(255,255,255,0.8)" font-family="system-ui" text-anchor="middle">Bhootnath</text>
+    </svg>
+  </div>
+
+  <!-- URL bottom left -->
+  <div class="url">patna-metro.com</div>
+
+  <!-- Line legend bottom right -->
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-line" style="background:#e02424"></div>
+      <span class="legend-label">Red Line · 14 stations</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-line" style="background:#1a56db"></div>
+      <span class="legend-label">Blue Line · 12 stations</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
