@@ -4,7 +4,15 @@ Reverse-chronological. Every entry answers "why", not just "what". Commit shas i
 
 ---
 
-## 2026-04-29
+## 2026-04-29 (session 2 — no new code commits)
+
+**Play Store rejected for impersonation policy (app name "Patna Metro")**
+Google flagged the listing title as too close to the government entity name without sufficient distancing. Enforcement date: Apr 26. The same name had already been approved by Apple App Store. Resolution: renamed Play Store listing only to "Patna Metro Guide" — no code or manifest changes required since the store listing title is set independently in Play Console. iOS listing stays "Patna Metro". Re-review submitted; pending Google approval (3–7 days).
+
+**Skills directory fixed**
+`/start` and `/wrap` project-local skills were installed in `patna-metro/.claude/skills/` (the inner directory) but Claude Code's working directory is the parent (`Patna Metro Vibecode/`). Skills were copied to `/Patna Metro Vibecode/.claude/skills/` — the correct location for this project.
+
+---
 
 **4915543** — Mark www redirect done (item #3) — verified working via curl
 `curl -sI https://www.patna-metro.com` returned HTTP 308 → `https://patna-metro.com/`. The redirect had been configured in Vercel domain settings (not `vercel.json`) at some point after the `vercel.json` rewrite was reverted (`a04b0eb`). Docs updated to reflect reality.

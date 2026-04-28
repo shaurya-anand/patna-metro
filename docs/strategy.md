@@ -8,9 +8,9 @@ Locked positions on distribution, SEO, and data. Update here when a strategic de
 
 **Live web:** `patna-metro.com` via Vercel. Auto-deploys on push to `main`. SPA routing handled by `vercel.json` catch-all rewrite.
 
-**Play Store:** TWA wrapper built with PWABuilder. Digital Asset Links at `.well-known/assetlinks.json` verify domain ownership. Any code push to `main` is instantly live in the TWA with no app store update required.
+**Play Store:** TWA wrapper built with PWABuilder. Digital Asset Links at `.well-known/assetlinks.json` verify domain ownership. Any code push to `main` is instantly live in the TWA with no app store update required. **Listing name: "Patna Metro Guide"** (renamed 2026-04-29 — Google rejected "Patna Metro" under impersonation policy for using a government entity name without sufficient distancing). Re-review pending as of 2026-04-29.
 
-**App Store (iOS):** Submitted to App Store Connect 2026-04-29. Screenshots (iOS + iPad sizes) in `public/screenshots/`.
+**App Store (iOS):** Submitted to App Store Connect 2026-04-29. Screenshots (iOS + iPad sizes) in `public/screenshots/`. **Listing name: "Patna Metro"** (Apple approved this name; intentionally kept different from Play Store to avoid a code change).
 
 **Decision: web-first, no native code.** The app is a website. Native app distribution is just a shell around the same URL. This means all feature work ships once and reaches all platforms simultaneously. If native capabilities (push notifications, background location) are ever needed, this decision would need revisiting.
 

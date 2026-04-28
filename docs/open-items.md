@@ -16,6 +16,7 @@ Pending work, deferred decisions, and known gaps. Each item has a number for cro
 - ⏳ Station data updates when new stations open (#2)
 - ✅ www redirect (#3) — working via Vercel domain settings (308 confirmed)
 - ⏳ Real-time train data (#4) — currently all schedule data is static/indicative
+- ⏳ Play Store re-review after rename (#6) — pending Google approval
 
 ---
 
@@ -32,6 +33,9 @@ All Red Line stations (S01–S14) and Blue Line S15–S23 are marked `operationa
 
 ### #4 — Real-time train data
 Current schedule is hardcoded and indicative (`SCHEDULE` in `stations.js`). PMRC does not appear to have a public API. If an official API or data feed becomes available, the Schedule and Planner pages should switch to live data. Until then, the disclaimer ("Schedule is indicative…") on the Schedule page covers this.
+
+### #6 — Play Store re-review after rename
+Listing renamed from "Patna Metro" to "Patna Metro Guide" on 2026-04-29 to resolve an impersonation policy rejection. Re-review submitted same day. Pending Google approval (typically 3–7 days). iOS listing unchanged ("Patna Metro"). No code changes required — store listing title is set in Play Console, independent of the web manifest.
 
 ### #5 — Dark mode
 No dark mode support currently. Tailwind's `dark:` utilities are available but unused. Low priority while the app is primarily used on mobile (most users won't notice), but worth adding if user feedback surfaces it.
