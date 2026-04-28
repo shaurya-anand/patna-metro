@@ -21,13 +21,13 @@ Pending work, deferred decisions, and known gaps. Each item has a number for cro
 
 ## Pending items
 
-### ✅ #1 — iOS App Store submission — DONE 2026-04-29
+### ✅ #1 — iOS App Store submission — DONE 2026-04-29 (4a00e84)
 iOS screenshots generated (`public/screenshots/ios/`, `public/screenshots/ipad/`) and submitted to App Store Connect.
 
 ### #2 — Station data updates when new stations open
 All Red Line stations (S01–S14) and Blue Line S15–S23 are marked `operational: false` in `stations.js`. When PMRC officially opens additional stations, update the `operational` flag and verify fare slabs still match the official PMRC chart. Also check that the route planner correctly handles newly-operational segments.
 
-### ✅ #3 — www redirect — DONE (verified 2026-04-29)
+### ✅ #3 — www redirect — DONE (verified 2026-04-29, 4915543)
 `https://www.patna-metro.com` returns HTTP 308 → `https://patna-metro.com/` via Vercel domain settings. The `vercel.json` rewrite approach was reverted (`a04b0eb`) but the domain-level redirect was configured separately and is working correctly.
 
 ### #4 — Real-time train data

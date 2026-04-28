@@ -4,6 +4,19 @@ Reverse-chronological. Every entry answers "why", not just "what". Commit shas i
 
 ---
 
+## 2026-04-29
+
+**4915543** — Mark www redirect done (item #3) — verified working via curl
+`curl -sI https://www.patna-metro.com` returned HTTP 308 → `https://patna-metro.com/`. The redirect had been configured in Vercel domain settings (not `vercel.json`) at some point after the `vercel.json` rewrite was reverted (`a04b0eb`). Docs updated to reflect reality.
+
+**4a00e84** — Mark iOS App Store submission done (item #1)
+iOS submission confirmed by user. `open-items.md` and `strategy.md` updated.
+
+**672c6aa** — Add session handoff docs and /start + /wrap skills
+Set up the durable doc layer for cold-session pickup: `docs/CHANGELOG.md` (populated from full git history), `docs/open-items.md`, `docs/design-rationale.md`, `docs/strategy.md`. Also added `/start` and `/wrap` project-local skills adapted from smingle-stream.
+
+---
+
 ## 2026-04-28
 
 **24fbe15** — Commit untracked screenshot assets and gen scripts
