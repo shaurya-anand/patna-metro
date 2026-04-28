@@ -30,7 +30,7 @@ Locked positions on distribution, SEO, and data. Update here when a strategic de
 
 **Canonical domain:** `patna-metro.com` (apex, no www). Canonical tags point to `https://patna-metro.com/[path]`.
 
-**www handling:** `www.patna-metro.com` redirect is unresolved (see open-item #3). Needs to be set in Vercel domain settings, not `vercel.json`.
+**www handling:** `www.patna-metro.com` → `patna-metro.com` 308 redirect is active via Vercel domain settings. The `vercel.json` rewrite approach was reverted (`a04b0eb`) but the domain-level redirect is working correctly (verified 2026-04-29).
 
 ---
 
