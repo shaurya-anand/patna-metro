@@ -4,7 +4,7 @@ Pending work, deferred decisions, and known gaps. Each item has a number for cro
 
 ---
 
-## Status snapshot (as of 2026-04-28)
+## Status snapshot (as of 2026-04-29)
 
 - ✅ Core app shipped (all 5 pages, bilingual, route planner, map, schedule, stations)
 - ✅ PWA + offline support
@@ -12,7 +12,7 @@ Pending work, deferred decisions, and known gaps. Each item has a number for cro
 - ✅ Play Store TWA packaging + Digital Asset Links
 - ✅ Privacy policy
 - ✅ Screenshot assets for store listings (Android, iOS, iPad)
-- ⏳ iOS App Store submission (#1) — screenshots generated, submission not confirmed
+- ✅ iOS App Store submission (#1) — submitted 2026-04-29
 - ⏳ Station data updates when new stations open (#2)
 - ⏳ www redirect (#3) — reverted due to loop, needs a clean fix
 - ⏳ Real-time train data (#4) — currently all schedule data is static/indicative
@@ -21,8 +21,8 @@ Pending work, deferred decisions, and known gaps. Each item has a number for cro
 
 ## Pending items
 
-### #1 — iOS App Store submission
-iOS screenshots generated (`public/screenshots/ios/`, `public/screenshots/ipad/`). PWABuilder packaging was used for Android; iOS equivalent (PWABuilder iOS export or similar) needs to be submitted to App Store Connect. Status unknown — not confirmed in any commit.
+### ✅ #1 — iOS App Store submission — DONE 2026-04-29
+iOS screenshots generated (`public/screenshots/ios/`, `public/screenshots/ipad/`) and submitted to App Store Connect.
 
 ### #2 — Station data updates when new stations open
 All Red Line stations (S01–S14) and Blue Line S15–S23 are marked `operational: false` in `stations.js`. When PMRC officially opens additional stations, update the `operational` flag and verify fare slabs still match the official PMRC chart. Also check that the route planner correctly handles newly-operational segments.

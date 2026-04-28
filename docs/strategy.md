@@ -10,7 +10,7 @@ Locked positions on distribution, SEO, and data. Update here when a strategic de
 
 **Play Store:** TWA wrapper built with PWABuilder. Digital Asset Links at `.well-known/assetlinks.json` verify domain ownership. Any code push to `main` is instantly live in the TWA with no app store update required.
 
-**App Store (iOS):** Screenshots generated (iOS + iPad sizes in `public/screenshots/`). Submission status: not confirmed in git history as of 2026-04-28. PWABuilder iOS export is the expected packaging path.
+**App Store (iOS):** Submitted to App Store Connect 2026-04-29. Screenshots (iOS + iPad sizes) in `public/screenshots/`.
 
 **Decision: web-first, no native code.** The app is a website. Native app distribution is just a shell around the same URL. This means all feature work ships once and reaches all platforms simultaneously. If native capabilities (push notifications, background location) are ever needed, this decision would need revisiting.
 
